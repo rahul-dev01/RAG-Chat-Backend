@@ -281,7 +281,7 @@ const IndexNewPDFController = async (req, res) => {
                     ? "PDF indexing failed. No chunks were saved."
                     : `Partially indexed: ${successfulChunks} out of ${chunks.length} chunks were successfully indexed.`;
 
-w
+
         res.status(201).json({
             success: successfulChunks > 0,
             message: indexingMessage,
