@@ -33,8 +33,6 @@ const IndexNewPDFController = async (req, res) => {
 
     try {
         console.log("Request received to index new PDF file");
-
-
         if (!req.file) {
             return res.status(400).json({
                 success: false,
@@ -82,6 +80,8 @@ const IndexNewPDFController = async (req, res) => {
 
         await pdfRecord.save();
         console.log(`PDF record created in database with ID: ${pdfRecord._id}`);
+
+        
 
         // Parse PDF and extract text
         const pdfFile = fs.readFileSync(pdfFilePath);
@@ -154,7 +154,6 @@ const IndexNewPDFController = async (req, res) => {
                 .replace(/\s+/g, ' ')                  
                 .trim();
 
-            // Skip empty or very short chunks
             if (!cleanChunk || cleanChunk.length < 10) {
                 console.log(`Skipping chunk ${index + 1} - too short (${cleanChunk.length} characters)`);
                 continue;
@@ -282,7 +281,7 @@ const IndexNewPDFController = async (req, res) => {
                     ? "PDF indexing failed. No chunks were saved."
                     : `Partially indexed: ${successfulChunks} out of ${chunks.length} chunks were successfully indexed.`;
 
-
+w
         res.status(201).json({
             success: successfulChunks > 0,
             message: indexingMessage,

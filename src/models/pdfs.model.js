@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const PdfSchema = new mongoose.Schema({
-  // PDF Basic Information
   name: {
     type: String,
     required: [true, "PDF name is required"],
